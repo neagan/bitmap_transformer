@@ -14,9 +14,6 @@ function bufObj(data) {
   bitmap.BMPheader.reservedTwo = data.readUInt16LE(8);
   bitmap.BMPheader.offset = data.readUInt32LE(10);
 
-  // Check offset
-  //console.log(bitmap.BMPheader.offset);
-
   // DIB header
   bitmap.DIBheader.size = data.readUInt32LE(14);
   bitmap.DIBheader.width = data.readUInt32LE(18);
@@ -30,17 +27,17 @@ function bufObj(data) {
   bitmap.DIBheader.colorNum = data.readUInt32LE(46);
   bitmap.DIBheader.important = data.readUInt32LE(50);
 
-  // Confirm configuration
-  //console.log(bitmap.DIBheader.size);
-  //console.log(bitmap.DIBheader.width, bitmap.DIBheader.height);
-  console.log(bitmap.DIBheader.colorNum);
-
-  // Pixel data
+  // Pixel data -> starts at bottom left and works up left to right
   var pixelOffset = bitmap.BMPheader.offset;
   var rowSize = ((bitmap.DIBheader.bitPix * bitmap.DIBheader.width +32) / 32)*4
-  //console.log(rowSize);
   var pixelArraySize = rowSize * bitmap.DIBheader.height;
-  //console.log(pixelArraySize);
+  var fileSize = bitmap.BMPheader.size;
+
+  // Assign pixel color data to array
+  bitmap.pixelData = [];
+  for (var i = pixelOffset; i < fileSize; i++) {
+    bitmap.pixelData.push(data[i]);
+  }
 }
 
 exports.bufObj = bufObj;
