@@ -2,10 +2,7 @@
 
 var fs = require('fs');
 
-// Not sure if this belongs here
-var bitmap = {};
-    bitmap.structure = {};
-
+// Reads file to buffer for object conversion
 function read(file, bufObj) {
   fs.readFile(file,  function(err, data) {
     if (err) throw err;
