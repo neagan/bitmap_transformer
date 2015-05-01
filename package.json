@@ -1,0 +1,23 @@
+{
+  "name": "bitmap_transformer",
+  "version": "0.1.0",
+  "description": "transforms bitmap color",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neagan/bitmap_transformer.git"
+  },
+  "author": "neagan26@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neagan/bitmap_transformer/issues"
+  },
+  "homepage": "https://github.com/neagan/bitmap_transformer",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "mocha": "^2.2.4"
+  }
+}
