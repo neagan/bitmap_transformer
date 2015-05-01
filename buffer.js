@@ -1,7 +1,7 @@
 'use strict';
 
 // Converts buffer to object
-function bufObj(data) {
+function bufObj(data, invert) {
   var bitmap = {};
   bitmap.BMPheader = {};
   bitmap.DIBheader = {};
@@ -28,16 +28,27 @@ function bufObj(data) {
   bitmap.DIBheader.important = data.readUInt32LE(50);
 
   // Pixel data -> starts at bottom left and works up left to right
-  var pixelOffset = bitmap.BMPheader.offset;
-  var rowSize = ((bitmap.DIBheader.bitPix * bitmap.DIBheader.width +32) / 32)*4
-  var pixelArraySize = rowSize * bitmap.DIBheader.height;
+  var offset = bitmap.DIBheader.size + 14;
+  console.log(offset);
+  var pixels = bitmap.BMPheader.offset;
+  console.log(pixels);
   var fileSize = bitmap.BMPheader.size;
+  console.log(fileSize);
+  console.log();
 
-  // Assign pixel color data to array
+  if (offset === pixels) {
+    pixels = fileSize;
+  }
+
+  // Assign pixel color data to array and call transform
   bitmap.pixelData = [];
-  for (var i = pixelOffset; i < fileSize; i++) {
+
+  for (var i = offset; i < pixels; i++) {
     bitmap.pixelData.push(data[i]);
   }
+  console.log(bitmap.pixelData[54]);
+  invert(bitmap);
+  console.log(bitmap.pixelData[54]);
 }
 
 exports.bufObj = bufObj;
