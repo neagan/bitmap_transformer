@@ -1,11 +1,10 @@
 'use strict';
 
 // Converts buffer to object
-function bufObj(data, invert) {
+function bufObj(data, invert, write) {
   var bitmap = {};
   bitmap.BMPheader = {};
   bitmap.DIBheader = {};
-  bitmap.pixelData = {};
 
   // BMP header
   bitmap.BMPheader.header = data.toString('utf8', 0, 2);
@@ -29,12 +28,8 @@ function bufObj(data, invert) {
 
   // Pixel data -> starts at bottom left and works up left to right
   var offset = bitmap.DIBheader.size + 14;
-  console.log(offset);
   var pixels = bitmap.BMPheader.offset;
-  console.log(pixels);
   var fileSize = bitmap.BMPheader.size;
-  console.log(fileSize);
-  console.log();
 
   if (offset === pixels) {
     pixels = fileSize;
@@ -46,9 +41,9 @@ function bufObj(data, invert) {
   for (var i = offset; i < pixels; i++) {
     bitmap.pixelData.push(data[i]);
   }
-  console.log(bitmap.pixelData[54]);
   invert(bitmap);
-  console.log(bitmap.pixelData[54]);
+
+  write(data, bitmap);
 }
 
 exports.bufObj = bufObj;
