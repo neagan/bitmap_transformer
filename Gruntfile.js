@@ -24,6 +24,21 @@ module.exports = function(grunt) {
         verbose: true,
         requireCurlyBraces: ['if']
       }
+    },
+
+    simplemocha: {
+      dev: {
+        src: ['test/**/*.js']
+      },
+
+      options: {
+        globals: ['should'],
+        timeout: 3000,
+        ignoreLeaks: false,
+        grep: '',
+        ui: 'bdd',
+        reporter: 'tap'
+      }
     }
   });
 

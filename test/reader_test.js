@@ -1,18 +1,15 @@
 'use strict';
 
 var expect = require('chai').expect;
-var reader = require('../reader');
+var reader = require('../lib/reader');
 
 describe('reader.js', function() {
+  var file = './bmp/bitmap1.bmp';
+
+
   describe('.read()', function() {
-    it('should read a file to a buffer', function(done) {
-      var file = './bmp/bitmap1.bmp';
-      reader.read(file, function(err, data) {
-        if (err) {
-          return done(err);
-        }
-        data.should.have.length(11078);
-      });
+    it('reads a file into a buffer', function(done) {
+      reader.read(file, bufTest);
     });
   });
 });
