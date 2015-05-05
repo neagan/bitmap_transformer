@@ -6,7 +6,6 @@ var writer = require('./lib/writer');
 
 // Reads in file as command line argument or use default
 var file = process.argv[2] || './bmp/bitmap1.bmp';
-var buf;
 
 fs.readFile(file, function(err, data) {
   if (err) {
