@@ -17,7 +17,6 @@ fs.readFile(file, function(err, data) {
   writer.write(data, obj);
 
   fs.writeFile('./bmp/inverted.bmp', data, function(err) {
-    console.log(buf);
     if (err) {
       throw err;
     }
