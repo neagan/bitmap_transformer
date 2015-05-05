@@ -1,4 +1,5 @@
 'use strict';
+
 var fs = require('fs');
 var buffer = require('./lib/buffer');
 var transform = require('./lib/transform');
