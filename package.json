@@ -4,7 +4,7 @@
   "description": "transforms bitmap color",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/grunt-cli/bin/grunt test"
+    "test": "./node_modules/grunt-cli/bin/grunt test",
     "start": "node index.js"
   },
   "repository": {
